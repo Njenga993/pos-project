@@ -1,0 +1,13 @@
+# Node modules (frontend)
+frontend/node_modules/
+
+# Python environment (backend)
+pos_backend/__pycache__/
+pos_backend/env/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode and OS stuff
+.vscode/
+.DS_Store

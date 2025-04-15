@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report</title>
+</head>
+<body>
+    <h1>Sales Report</h1>
+    
+    <form method="get">
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" value="{{ start_date|date:'Y-m-d' }}">
+        
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" value="{{ end_date|date:'Y-m-d' }}">
+        
+        <label for="product">Product:</label>
+        <select name="product">
+            <option value="">All Products</option>
+            {% for product in products %}
+                <option value="{{ product.name }}" {% if product.name == product_filter %}selected{% endif %}>{{ product.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+    
+    <h2>Total Sales: ${{ total_sales }}</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sale ID</th>
+                <th>Timestamp</th>
+                <th>Product</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+                {% for item in sale.saleitem_set.all %}
+                    <tr>
+                        <td>{{ sale.id }}</td>
+                        <td>{{ sale.timestamp }}</td>
+                        <td>{{ item.product.name }}</td>
+                        <td>${{ item.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            {% empty %}
+                <tr>
+                    <td colspan="4">No sales found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

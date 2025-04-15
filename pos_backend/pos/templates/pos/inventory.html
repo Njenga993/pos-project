@@ -1,0 +1,25 @@
+<!-- pos/templates/pos/inventory.html -->
+
+<html>
+<head><title>Inventory</title></head>
+<body>
+    <h1>Inventory Management</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Current Stock</th>
+                <th>Add Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <p>{{ product.name }} - Stock: {{ product.stock }} 
+                <a href="{% url 'add_stock' product.id %}">[Add Stock]</a>
+            </p>
+        {% endfor %}
+        </tbody>
+        
+    </table>
+</body>
+</html>

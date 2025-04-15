@@ -1,0 +1,21 @@
+/* Full screen layout and background */
+body,
+html,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8; /* Light blue background */
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Consistent background */
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f0f4f8; /* Match app background */
+}
